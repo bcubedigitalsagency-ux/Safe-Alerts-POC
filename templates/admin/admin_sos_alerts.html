@@ -1,0 +1,27 @@
+{% extends 'base_admin.html' %}
+{% block content %}
+
+<h2>🚨 SOS Alerts</h2>
+
+<div class="sos-alerts">
+  {% for sos in sos_list %}
+  <div class="sos-card">
+    <h3>{{ sos.user.name }} ({{ sos.user.email }})</h3>
+    <p><strong>Contact:</strong> {{ sos.user.phone or "No phone provided" }}</p>
+    <p><strong>Triggered:</strong> {{ sos.timestamp.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+    <p><strong>Status:</strong> {{ "Active" if sos.active else "Closed" }}</p>
+    <p><strong>Coordinates:</strong> {{ sos.lat }}, {{ sos.lng }}</p>
+
+    <!-- Map -->
+    <iframe
+      width="100%"
+      height="250"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/view?key=YOUR_GOOGLE_MAPS_API_KEY&center={{ sos.lat }},{{ sos.lng }}&zoom=15"
+      allowfullscreen>
+    </iframe>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

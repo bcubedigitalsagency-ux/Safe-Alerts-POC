@@ -1,0 +1,56 @@
+{% extends 'base_user.html' %}
+{% block content %}
+
+<div class="dashboard-header">
+  <h1>👋 Welcome Back!</h1>
+  <p class="tagline">Here’s a quick snapshot of your safety activity</p>
+</div>
+
+<div class="dashboard-grid">
+
+  <!-- Contacts -->
+  <div class="card dashboard-card">
+    <h3>📞 Your Emergency Contacts</h3>
+    {% if contacts %}
+      <ul class="list">
+        {% for c in contacts %}
+          <li><b>{{ c.name }}</b> — {{ c.phone }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No contacts added yet.</p>
+    {% endif %}
+    <a href="{{ url_for('contacts') }}" class="btn btn-primary small-btn">+ Manage Contacts</a>
+  </div>
+
+  <!-- Alerts -->
+  <div class="card dashboard-card highlight">
+    <h3>🚨 Recent SOS Alerts</h3>
+    {% if alerts %}
+      {% for a in alerts %}
+        <p><b>{{ a.timestamp.strftime("%Y-%m-%d %H:%M") }}</b> — 
+        {{ "🟢 Active" if a.active else "⚪ Closed" }}</p>
+      {% endfor %}
+    {% else %}
+      <p>No recent alerts.</p>
+    {% endif %}
+  </div>
+
+  <!-- News -->
+  <div class="card dashboard-card">
+    <h3>📰 Latest Safety News</h3>
+    {% if news %}
+      <ul class="list">
+        {% for n in news %}
+          <li>{{ n.title }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No news available yet.</p>
+    {% endif %}
+    <a href="{{ url_for('chat') }}" class="btn btn-primary small-btn">🔍 View More</a>
+  </div>
+
+</div>
+
+{% endblock %}

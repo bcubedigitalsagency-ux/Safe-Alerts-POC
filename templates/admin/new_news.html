@@ -1,0 +1,30 @@
+{% extends 'base_admin.html' %}
+{% block content %}
+
+<div class="news-form-container">
+  <div class="card form-card">
+    <h2 class="form-title">Post News Update</h2>
+    <p class="form-subtitle">Share real-time commuter reports with all users</p>
+
+    <form method="post" class="news-form">
+      <div class="form-group">
+        <label for="title">Headline</label>
+        <input type="text" id="title" name="title" placeholder="Enter news headline" required>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Details</label>
+        <textarea id="description" name="description" rows="4" placeholder="Provide detailed information..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="route">Route / Location</label>
+        <input type="text" id="route" name="route" placeholder="E.g., Lekki–Ajah Expressway" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">📢 Publish News</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

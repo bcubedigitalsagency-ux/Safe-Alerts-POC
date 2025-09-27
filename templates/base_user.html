@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Panel</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="loading-overlay">
+  <div class="loader"></div>
+</div>
+
+  <div class="sidebar user-sidebar">
+    <h2>User Panel</h2>
+    <a href="{{ url_for('user_dashboard') }}">🏠 Dashboard</a>
+    <a href="{{ url_for('sos') }}">🚨 SOS</a>
+    <a href="{{ url_for('contacts') }}">📇 Contacts</a>
+    <a href="{{ url_for('profile') }}">⚙️ Profile</a>
+    <a href="{{ url_for('chat') }}">💬 Chat</a>
+    <a href="{{ url_for('logout') }}">🚪 Logout</a>
+  </div>
+
+  <div class="content">
+    {% with messages=get_flashed_messages(with_categories=true) %}
+      {% for cat,msg in messages %}
+        <div class="flash {{cat}}">{{msg}}</div>
+      {% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </div>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

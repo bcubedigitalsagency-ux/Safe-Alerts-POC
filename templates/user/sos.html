@@ -1,0 +1,46 @@
+{% extends 'base_user.html' %}
+{% block content %}
+
+<div class="sos-container">
+  <h2 class="sos-title">🚨 Trigger SOS Alert</h2>
+  <p class="sos-subtitle">
+    Your current location will be shared automatically.  
+    Please allow location access when prompted.
+  </p>
+
+  <form method="post" class="sos-form" onsubmit="return validateLocation()">
+    <input type="hidden" id="lat" name="lat">
+    <input type="hidden" id="lng" name="lng">
+
+    <button class="btn btn-sos">🚨 Send SOS Now</button>
+  </form>
+</div>
+
+<script>
+  // Automatically get user location
+  window.onload = function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        document.getElementById("lat").value = position.coords.latitude;
+        document.getElementById("lng").value = position.coords.longitude;
+      }, function(error) {
+        alert("⚠️ Location access denied. Please enable GPS for SOS feature.");
+      });
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  };
+
+  // Prevent empty submission
+  function validateLocation() {
+    let lat = document.getElementById("lat").value;
+    let lng = document.getElementById("lng").value;
+    if (!lat || !lng) {
+      alert("⚠️ Location not available yet. Please wait a moment and try again.");
+      return false;
+    }
+    return true;
+  }
+</script>
+
+{% endblock %}

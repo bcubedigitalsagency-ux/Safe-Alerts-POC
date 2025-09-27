@@ -1,0 +1,61 @@
+{% extends 'base_admin.html' %}
+{% block content %}
+<div class="dashboard-grid">
+
+  <!-- Active SOS -->
+  <div class="card highlight">
+    <h3>🚨 Active SOS Alerts</h3>
+    <p>{{ alerts|length }} ongoing</p>
+    {% for a in alerts %}
+      <p>{{ a.timestamp.strftime("%Y-%m-%d %H:%M") }} — User {{ a.user_id }} ({{ "Active" if a.active else "Closed" }})</p>
+    {% else %}
+      <p>No active alerts</p>
+    {% endfor %}
+  </div>
+
+  <!-- Emergency Contacts -->
+  <div class="card">
+    <h3>📞 Emergency Contacts</h3>
+    <p>Total users: {{ users|length }}</p>
+    <p>Avg. contacts per user: ~{{ avg_contacts }}</p>
+  </div>
+
+  <!-- Real-time News -->
+  <div class="card">
+    <h3>📰 Latest Commuter Reports</h3>
+    {% for n in news[:5] %}
+      <p><b>{{ n.route }}</b>: {{ n.title }}</p>
+    {% else %}
+      <p>No reports yet</p>
+    {% endfor %}
+  </div>
+
+  <!-- Secure Chat Monitor -->
+  <div class="card">
+    <h3>💬 Recent Chats</h3>
+    {% for msg in recent_msgs %}
+      <p><b>{{ msg.sender_role }}:</b> {{ msg.message[:50] }}...</p>
+    {% else %}
+      <p>No chats yet</p>
+    {% endfor %}
+  </div>
+
+  <!-- System Features -->
+  <div class="card features">
+    <h3>⚙️ Core Features (POC)</h3>
+    <ul>
+      <li>✔ One-tap SOS alert</li>
+      <li>✔ Manage emergency contacts</li>
+      <li>✔ Real-time location tracking</li>
+      <li>✔ Auto-lock phone & block banking apps</li>
+      <li>✔ In-app emergency calling</li>
+      <li>✔ Stealth activation (power/shake)</li>
+      <li>✔ Secure chat with agents</li>
+      <li>✔ Auto-record on SOS activation</li>
+      <li>✔ Voice prompt controls</li>
+      <li>✔ Anti-theft & kidnap news feed</li>
+    </ul>
+  </div>
+
+</div>
+{% endblock %}
