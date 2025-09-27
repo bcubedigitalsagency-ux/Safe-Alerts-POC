@@ -1,0 +1,3 @@
+{% extends 'base_user.html' %}{% block content %}<h2>Secure Chat</h2>
+<div class="card">{% for m in msgs %}<p><b>{{m.sender_role}}:</b> {{m.message}}</p>{% endfor %}</div>
+<form method="post"><input name="message" placeholder="Type message"><button class="btn">Send</button></form>{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base_public.html' %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-icon">
+      <i class="fas fa-lock"></i>
+    </div>
+    <h1 class="hero-title">SafeAlerts</h1>
+    <p class="hero-tagline">Your trusted safety companion — anytime, anywhere.</p>
+    <a href="{{ url_for('login') }}" class="btn btn-primary">Get Started</a>
+  </div>
+</section>
+{% endblock %}

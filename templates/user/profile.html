@@ -1,0 +1,2 @@
+{% extends 'base_user.html' %}{% block content %}<h2>Profile</h2>
+<form method="post"><input name="name" value="{{g.user.name}}"><input name="phone" value="{{g.user.phone}}"><input name="vehicle" value="{{g.user.vehicle_details}}"><button class="btn">Save</button></form>{% endblock %}

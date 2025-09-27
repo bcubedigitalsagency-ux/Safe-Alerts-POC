@@ -1,0 +1,3 @@
+{% extends 'base_user.html' %}{% block content %}<h2>Contacts</h2>
+<form method="post"><input name="name" placeholder="Name"><input name="phone" placeholder="Phone"><input name="relationship" placeholder="Relationship"><button class="btn">Add Contact</button></form>
+<div class="card">{% for c in contacts %}<p>{{c.name}} - {{c.phone}} ({{c.relationship}})</p>{% endfor %}</div>{% endblock %}
